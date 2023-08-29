@@ -17,6 +17,7 @@ namespace TeamProject
         {
             GameDataSetting();
             DisplayGameIntro();
+
         }
 
         static void GameDataSetting()
@@ -27,7 +28,7 @@ namespace TeamProject
             // 인벤토리 생성
             inventory = new Item[10];
 
-            // 아이템 추가
+            // 아이템 정보 세팅
             AddItem(new Item("판금갑옷", "단단한 갑옷입니다.", 0, 10));
             AddItem(new Item("비철단도", "사거리가 짧은 단도입니다", 10, 0));
 
@@ -60,6 +61,37 @@ namespace TeamProject
                 }
             }
         }
+        static void CreateID()
+        {
+            Console.Clear();
+            Console.WriteLine("########################################################################################################################");
+            Console.WriteLine("##                                                                                                                    ##");
+            Console.WriteLine("##               ######     #    ####### #######        #######    #     # ####### ######  #######                    ##");
+            Console.WriteLine("##               #     #   # #      #       #    #      #          ##   ## #     # #     # #                          ##");
+            Console.WriteLine("##               #     #  #   #     #       #    #      #          # # # # #     # #     # #                          ##");
+            Console.WriteLine("##               ######  #     #    #       #    #      #####      #  #  # #     # #     # #####                      ##");
+            Console.WriteLine("##               #     # #######    #       #    #      #          #     # #     # #     # #                          ##");
+            Console.WriteLine("##               #     # #     #    #       #    #      #          #     # #     # #     # #                          ##");
+            Console.WriteLine("##               ######  #     #    #       #    ###### #######    #     # ####### ######  #######                    ##");
+            Console.WriteLine("##                                                                                                                    ##");
+            Console.WriteLine("########################################################################################################################");
+            Console.WriteLine("## 스파르타 마을에 오신 여러분 환영합니다.                                                                            ##");
+            Console.WriteLine("##                                                                                                                    ##");
+            Console.BackgroundColor = ConsoleColor.DarkYellow;
+            Console.ForegroundColor = ConsoleColor.Black;
+            Console.WriteLine("## 원하시는 닉네임을 입력해주세요.                                                                                    ##");
+            Console.ResetColor();
+            Console.WriteLine("##                                                                                                                    ##");
+            Console.WriteLine("##                                                                                                                    ##");
+            Console.WriteLine("##  1. ID 생성하기                                                                                                    ##");
+            Console.WriteLine("##  2. 로그인하기                                                                                                     ##");
+            Console.WriteLine("##                                                                                                                    ##");
+            Console.WriteLine("##                                                                                                                    ##");
+            Console.WriteLine("########################################################################################################################");
+
+            int input = CheckValidInput(1, 2);
+        }
+
         static void DisplayGameIntro()
         {
             Console.Clear();
@@ -79,26 +111,33 @@ namespace TeamProject
             Console.WriteLine("##                                                                                                                    ##");
             Console.BackgroundColor = ConsoleColor.DarkYellow;
             Console.ForegroundColor = ConsoleColor.Black;
-            Console.WriteLine("## 1.상태보기                                                                                                         ##");
-            Console.WriteLine("## 2.인벤토리                                                                                                         ##");
-            Console.WriteLine("## 3.전투시작                                                                                                         ##");
+            Console.WriteLine("## 1.ID 생성하기                                                                                                      ##");
+            Console.WriteLine("## 2.상태보기                                                                                                         ##");
+            Console.WriteLine("## 3.인벤토리                                                                                                         ##");
+            Console.WriteLine("## 4.전투시작                                                                                                         ##");
             Console.ResetColor();
             Console.WriteLine("##                                                                                                                    ##");
             Console.WriteLine("## 원하시는 행동을 입력해주세요.                                                                                      ##");
             Console.WriteLine("##                                                                                                                    ##");
             Console.WriteLine("########################################################################################################################");
 
-            int input = CheckValidInput(1, 3);
+            int input = CheckValidInput(1, 4);
             switch (input)
             {
                 case 1:
-                    ShowStatus();
+                    CreateID();
                     break;
                 case 2:
-                    ShowInventory();
+                    ShowStatus();
                     break;
                 case 3:
+                    ShowInventory();
+                    break;
+                case 4:
                     StartBattle();
+                    break;
+                default
+                    : Console.WriteLine("1~4의 숫자를 입력해주세요.");
                     break;
             }
 
@@ -121,8 +160,8 @@ namespace TeamProject
             Console.ResetColor();
             Console.WriteLine("│                                                          │");
             Console.WriteLine("│ 원하시는 행동을 입력해주세요.                            │ ");
-            Console.WriteLine("│ 0. 나가기                                                │ ");
             Console.WriteLine("│                                                          │ ");
+            Console.WriteLine("│ 0. 나가기                                                │ ");
             Console.WriteLine("│                                                          │ ");
             Console.WriteLine("│                                                          │ ");
             Console.WriteLine("│                                                          │ ");
@@ -159,17 +198,21 @@ namespace TeamProject
             Console.WriteLine($"│ 6.                         {"│",31}");
             Console.ResetColor();
             Console.WriteLine($"│{"│",59}");
-            Console.WriteLine($"│ 원하시는 행동을 입력해주세요. {"│",28}");
-            Console.WriteLine($"│ 1. 아이템 장착관리           {"│",29}");
-            Console.WriteLine($"│ 0. 나가기                    {"│",29}");
+            Console.WriteLine($"│{"│",59}");
+            Console.WriteLine($"├──────────────────────────────────────────────────────────┤");
+            Console.WriteLine($"│ 원하시는 행동을 입력해주세요.  {" │",27}");
             Console.WriteLine($"│{"│",59}");
             Console.WriteLine($"│{"│",59}");
+            Console.WriteLine($"│{"│",59}");
+            Console.WriteLine($"│ 0. 나가기                                                │");
+            Console.WriteLine($"│ 1. 아이템 장착하기                                       │");
+            Console.WriteLine($"│ 2. 아이템 해제하기                                       │");
             Console.WriteLine($"│{"│",59}");
             Console.WriteLine($"│{"│",59}");
             Console.WriteLine($"│{"│",59}");
             Console.WriteLine("└──────────────────────────────────────────────────────────┘");
 
-            int input = CheckValidInput(0, 1);
+            int input = CheckValidInput(0, 2);
             switch (input)
             {
                 case 0:
@@ -178,11 +221,22 @@ namespace TeamProject
                 case 1:
                     DoItemEquipment();
                     break;
+                case 2 :
+                    DoItemUnEquipment();
+                    break;
+                default:
+                    Console.WriteLine("유효하지 않은 입력입니다.");
+                    break;
+                
 
             }
         }
 
         static void DoItemEquipment()
+        {
+
+        }
+        static void DoItemUnEquipment()
         {
 
         }
@@ -294,30 +348,136 @@ namespace TeamProject
                 AttackMinion();
                 return;
             }
-
+            // 미니언에게 가해지는 데미지
             int minDamage = (int)(player.Atk * 0.9);
             int maxDamage = (int)(player.Atk * 1.1);
+
+            // 미니언이 가하는 데미지
+            int minLvDamage = (int)(minion[targetIndex].Level * 2);
+            int maxLvDamage = (int)(minion[targetIndex].Level * 3);
+
+            // 플레이어 HP 반영
+            int playerDamage = new Random().Next(minLvDamage,maxLvDamage);
+            player.CurHp -= playerDamage;
+
+            
+
             int damage = new Random().Next(minDamage, maxDamage + 1);
-            Console.Clear();
-                                    
-            Console.WriteLine($"{player.Name}의 공격!");
-            Console.WriteLine($"{minion[targetIndex].Name}에게 공격을 가했습니다. [데미지 : {damage}]");
-            Console.WriteLine("");
-            Console.WriteLine($"{minion[targetIndex].Name}");
-          
-                minion[targetIndex].CurrentHp -= damage;
+            int minionDamage = new Random().Next(minLvDamage, maxLvDamage + 1);
+
+            minion[targetIndex].CurrentHp -= damage;
 
             if (minion[targetIndex].CurrentHp <= 0)
             {
                 minion[targetIndex].IsMonsterDead = true;
                 minion[targetIndex].CurrentHp = 0;
             }
+            Console.Clear();
+
+            Console.WriteLine("Battle!!\n");
+            Console.WriteLine($"{player.Name}의 공격!");
+            Console.WriteLine($"{minion[targetIndex].Name}에게 공격을 가했습니다. [데미지 : {damage}]");
+            Console.WriteLine("");
+            Console.WriteLine($"Lv.{minion[targetIndex].Level}{minion[targetIndex].Name}");
+            Console.WriteLine($"남은 HP {minion[targetIndex].CurrentHp}");
 
             Console.ReadLine();
-            StartBattle();
+            Console.Clear();
+
+            Console.WriteLine("Battle!!\n");
+            Console.WriteLine($"{minion[targetIndex].Name}의 공격!");
+            Console.WriteLine($"{player.Name}이 공격을 받았습니다. [데미지 : {minionDamage}]");
+            Console.WriteLine("");
+            Console.WriteLine($"Lv.{player.Level} {player.Name}");
+            Console.WriteLine($"HP : {player.CurHp}(-{playerDamage})\n");
+            Console.WriteLine("대상을 선택해주세요.");
+
+            Console.ReadLine();
+            if (minion[targetIndex].CurrentHp <= 0)
+            {
+                WinBattle();
+            }
+            else if (minion[targetIndex].CurrentHp > 0)
+            {
+                AttackMinion();
+            }
+            if(player.CurHp <=0)
+            {
+                LoseBattle();
+            }
+            else if (player.CurHp > 0)
+            {
+                AttackMinion();
+            }
+            
+
 
         }
+        static void WinBattle()
+        {
 
+            // 골드보상
+            int victoryReward = new Random().Next(100, 500);
+            player.Gold += victoryReward;
+            string goldChange = player.Gold > 0 ? $"+{victoryReward}" : victoryReward.ToString();
+
+            Console.Clear();
+            Console.WriteLine("┌──────────────────────────────────────────────────────────┐");
+            Console.WriteLine($"│Battle!! - Result                                         │");
+            Console.WriteLine($"│                                                          │");
+            Console.WriteLine($"│Victory Game                                              │");
+            Console.WriteLine($"│                                                          │");
+            Console.WriteLine($"│                                                          │");
+            Console.WriteLine($"│미니언과의 전투에서 승리하셨습니다.                       │");
+            Console.WriteLine($"│                                                          │");
+            Console.WriteLine($"│Lv.{player.Level} {player.Job}                                                 │");
+            Console.WriteLine($"│남은 HP : {player.CurHp}                                              │");           
+            Console.WriteLine($"│보유 골드 : {player.Gold}({goldChange})G                                  │");
+            Console.WriteLine($"│                                                          │");
+            Console.WriteLine($"│0. 초기화면                                               │");
+            Console.WriteLine($"│1. 전투재개                                               │");
+            Console.WriteLine("└──────────────────────────────────────────────────────────┘");
+
+            int input = CheckValidInput(0, 1);
+            switch (input)
+            {
+                case 0:
+                    DisplayGameIntro();
+                    break;
+                case 1:
+                    StartBattle();
+                    break;
+            }
+        }
+        static void LoseBattle()
+        {
+            Console.Clear();
+            Console.WriteLine("┌──────────────────────────────────────────────────────────┐");
+            Console.WriteLine($"│Battle!! - Result                                         ┃");
+            Console.WriteLine($"│                                                          ┃");
+            Console.WriteLine($"│You Lose                                                  ┃");
+            Console.WriteLine($"│                                                          ┃");
+            Console.WriteLine($"│                                                          ┃");
+            Console.WriteLine($"│전투에서 사망하셨습니다.                                  ┃");
+            Console.WriteLine($"│                                                          ┃");
+            Console.WriteLine($"│Lv.{player.Level} {player.Job}                                                  ┃");
+            Console.WriteLine($"│남은 HP : {player.CurHp}                                             ┃");
+            Console.WriteLine($"│                                                          ┃");
+            Console.WriteLine($"│0. 초기화면                                               ┃");
+            Console.WriteLine($"│1. 전투재개                                               ┃");
+            Console.WriteLine("└──────────────────────────────────────────────────────────┘");
+
+            int input = CheckValidInput(0, 1);
+            switch (input)
+            {
+                case 0:
+                    DisplayGameIntro();
+                    break;
+                case 1:
+                    StartBattle();
+                    break;
+            }
+        }
 
 
 
