@@ -11,17 +11,28 @@ namespace TeamProject
         private static Item[] inventory;
         private static int ItemCount;
         private static Monster[] minion;
+        private static Identification login;
+        private static bool isLoggedIn = false; // 사용자 로그인 여부
 
-        
         static void Main(string[] args)
         {
             GameDataSetting();
-            DisplayGameIntro();
+            if (!isLoggedIn) // 로그인되지 않았다면
+            {
+                FirstScene(); // 시작화면 출력
+            }
+            else
+            {
+                DisplayGameIntro(); // 이미 로그인 되어있다면 인트로 출력
+            }
 
         }
 
         static void GameDataSetting()
         {
+            // 로그인 기능
+            login = new Identification("", "");
+
             // 캐릭터 정보 세팅
             player = new Character("Son", "전사", 1, 10, 10, 100, 100, 1500);
 
@@ -38,7 +49,7 @@ namespace TeamProject
             AddMinion(new Monster(1, "  원거리 미니언", "원거리에서 공격합니다.", 15, 15, 5));
             AddMinion(new Monster(3, "  근거리 미니언", "근거리에서 공격합니다.", 25, 25, 10));
             AddMinion(new Monster(5, "  대포   미니언", "강력한 공격을 합니다.", 50, 50, 15));
-            AddMinion(new Monster(10,"  슈퍼  미니언", "강력한 공격을 합니다.", 100, 100, 20));
+            AddMinion(new Monster(10, "  슈퍼  미니언", "강력한 공격을 합니다.", 100, 100, 20));
 
 
         }
@@ -48,6 +59,8 @@ namespace TeamProject
             inventory[ItemCount] = item;
             ++ItemCount;
         }
+
+
         static void AddMinion(Monster monster)
         {
             if (monster == null)
@@ -61,7 +74,7 @@ namespace TeamProject
                 }
             }
         }
-        static void CreateID()
+        static void FirstScene()
         {
             Console.Clear();
             Console.WriteLine("########################################################################################################################");
@@ -79,7 +92,7 @@ namespace TeamProject
             Console.WriteLine("##                                                                                                                    ##");
             Console.BackgroundColor = ConsoleColor.DarkYellow;
             Console.ForegroundColor = ConsoleColor.Black;
-            Console.WriteLine("## 원하시는 닉네임을 입력해주세요.                                                                                    ##");
+            Console.WriteLine("## 원하시는 행동을 입력해주세요.                                                                                      ##");
             Console.ResetColor();
             Console.WriteLine("##                                                                                                                    ##");
             Console.WriteLine("##                                                                                                                    ##");
@@ -90,8 +103,149 @@ namespace TeamProject
             Console.WriteLine("########################################################################################################################");
 
             int input = CheckValidInput(1, 2);
+            switch (input)
+            {
+                case 1: CreateID();
+                    break;
+                case 2: Login();
+                    break;
+                default:
+                    Console.WriteLine("1~2를 입력해주세요.");
+                    break;
+            }
         }
+        //ID 만들기
+        static void CreateID()
+        {
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.WriteLine("┌────────────────────────────┐\n"+
+                              "│원하시는 ID를 입력해주세요. │\n"+
+                              "└────────────────────────────┘");
+            Console.ResetColor ();
+            string newUsername = Console.ReadLine();
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.WriteLine("┌────────────────────────────┐\n" +
+                              "│원하시는 PW를 입력해주세요. │\n" +
+                              "└────────────────────────────┘");
+            Console.ResetColor();
+            string newPassword = Console.ReadLine();
 
+            login = new Identification(newUsername, newPassword);
+            player.Name = newUsername; // 새로운 ID를 캐릭터 정보에 저장
+
+            Console.WriteLine("닉네임이 성공적으로 생성되었습니다!");
+            Console.WriteLine("계속하려면 아무 키나 누르세요.");
+            Console.ReadLine();
+
+            Login();
+
+        }
+        // 로그인 하기(만든 ID와 다르면 로그인 실패)
+        static void Login()
+        {
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.WriteLine("┌────────────────────────────┐\n" +
+                              "│ID를 입력해주세요.          │\n" +
+                              "└────────────────────────────┘");
+            Console.ResetColor();
+            string enteredUsername = Console.ReadLine();
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.WriteLine("┌────────────────────────────┐\n" +
+                              "│PW를 입력해주세요.          │\n" +
+                              "└────────────────────────────┘");
+            Console.ResetColor();
+            string enteredPassword = Console.ReadLine();
+
+            if (enteredUsername == login.ID && enteredPassword == login.Password)
+            {
+                Console.WriteLine("로그인 성공!");
+                isLoggedIn = true; // 로그인 플래그를 true로 설정하여 로그인 상태로 변경
+                Console.WriteLine("계속하려면 아무 키나 누르세요...");
+                Console.ReadKey();
+                SelectJob(); // 직업선택창 출력
+            }
+            else
+            {
+                Console.WriteLine("잘못된 사용자 이름 또는 비밀번호입니다. 계속하려면 아무 키나 누르세요.");
+                Console.ReadKey();
+                FirstScene(); // 다시 처음 화면 표시
+            }
+
+        }
+        // 직업선택창
+        static void SelectJob()
+        {
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.WriteLine("┌────────────────────────────┐\n" +
+                              "│원하는 직업을 선택해주세요.  │\n" +
+                              "└────────────────────────────┘");
+            Console.ResetColor();
+            Console.WriteLine("1. 격투가 2. 전사 3. 궁수 4. 마법사");
+            string SelectInput   = Console.ReadLine();
+            int num;
+            bool isInt = int.TryParse(SelectInput, out num);
+
+            if(isInt)
+            {
+                if(num >=1 &&  num <= 4)
+                    if(num ==1)
+                    {
+                        Console.WriteLine("격투가를 선택하셨습니다.");
+                        player.Job = "격투가";
+                        player.Atk = 10;
+                        player.Def = 20;
+                        player.CurHp = 150;
+                        Console.WriteLine("계속하려면 아무 키나 누르세요...");
+                        Console.ReadKey();
+                        DisplayGameIntro();
+                    }
+                    else if(num ==2)
+                    {
+                        Console.WriteLine("전사를 선택하셨습니다.");
+                        player.Job = "전사";
+                        player.Atk = 15;
+                        player.Def = 15;
+                        player.CurHp = 100;
+                        Console.WriteLine("계속하려면 아무 키나 누르세요...");
+                        Console.ReadKey();
+                        DisplayGameIntro();
+                    }
+                    else if (num == 3)
+                    {
+                        Console.WriteLine("궁수를 선택하셨습니다.");
+                        player.Job = "궁수";
+                        player.Atk = 20;
+                        player.Def = 10;
+                        player.CurHp = 80;
+                        Console.WriteLine("계속하려면 아무 키나 누르세요...");
+                        Console.ReadKey();
+                        DisplayGameIntro();
+                    }
+                    else
+                    {
+                        Console.WriteLine("마법사를 선택하셨습니다.");
+                        player.Job = "마법사";
+                        player.Atk = 30;
+                        player.Def = 5;
+                        player.CurHp = 50;
+                        Console.WriteLine("계속하려면 아무 키나 누르세요...");
+                        Console.ReadKey();
+                        DisplayGameIntro();
+                    }
+                else
+                {
+                    Console.WriteLine("1~4 의 숫자를 입력해주세요.");
+                }
+            }
+            else
+            {
+                Console.WriteLine("숫자가 아닙니다.");
+            }
+
+        }
         static void DisplayGameIntro()
         {
             Console.Clear();
@@ -111,33 +265,30 @@ namespace TeamProject
             Console.WriteLine("##                                                                                                                    ##");
             Console.BackgroundColor = ConsoleColor.DarkYellow;
             Console.ForegroundColor = ConsoleColor.Black;
-            Console.WriteLine("## 1.ID 생성하기                                                                                                      ##");
-            Console.WriteLine("## 2.상태보기                                                                                                         ##");
-            Console.WriteLine("## 3.인벤토리                                                                                                         ##");
-            Console.WriteLine("## 4.전투시작                                                                                                         ##");
+            Console.WriteLine("## 1.상태보기                                                                                                         ##");
+            Console.WriteLine("## 2.인벤토리                                                                                                         ##");
+            Console.WriteLine("## 3.전투시작                                                                                                         ##");
             Console.ResetColor();
             Console.WriteLine("##                                                                                                                    ##");
             Console.WriteLine("## 원하시는 행동을 입력해주세요.                                                                                      ##");
             Console.WriteLine("##                                                                                                                    ##");
             Console.WriteLine("########################################################################################################################");
 
-            int input = CheckValidInput(1, 4);
+            int input = CheckValidInput(1, 3);
             switch (input)
             {
+                
                 case 1:
-                    CreateID();
-                    break;
-                case 2:
                     ShowStatus();
                     break;
-                case 3:
+                case 2:
                     ShowInventory();
                     break;
-                case 4:
+                case 3:
                     StartBattle();
                     break;
                 default
-                    : Console.WriteLine("1~4의 숫자를 입력해주세요.");
+                    : Console.WriteLine("1~3의 숫자를 입력해주세요.");
                     break;
             }
 
@@ -153,6 +304,7 @@ namespace TeamProject
             Console.ForegroundColor = ConsoleColor.Black;
             Console.WriteLine($"│ LV    : {player.Level}                                                │");
             Console.WriteLine($"│ Name  : {player.Name}                                              │");
+            Console.WriteLine($"│ job   : {player.Job}                                               │");
             Console.WriteLine($"│ Atk   : {player.Atk}                                               │");
             Console.WriteLine($"│ Def   : {player.Def}                                               │");
             Console.WriteLine($"│ HP    : {player.CurHp}                                              │");
@@ -430,7 +582,7 @@ namespace TeamProject
             Console.WriteLine($"│                                                          │");
             Console.WriteLine($"│미니언과의 전투에서 승리하셨습니다.                       │");
             Console.WriteLine($"│                                                          │");
-            Console.WriteLine($"│Lv.{player.Level} {player.Job}                                                 │");
+            Console.WriteLine($"│Lv.{player.Level} {player.Job} {player.Name}                                                 │");
             Console.WriteLine($"│남은 HP : {player.CurHp}                                              │");           
             Console.WriteLine($"│보유 골드 : {player.Gold}({goldChange})G                                  │");
             Console.WriteLine($"│                                                          │");
@@ -460,7 +612,7 @@ namespace TeamProject
             Console.WriteLine($"│                                                          ┃");
             Console.WriteLine($"│전투에서 사망하셨습니다.                                  ┃");
             Console.WriteLine($"│                                                          ┃");
-            Console.WriteLine($"│Lv.{player.Level} {player.Job}                                                  ┃");
+            Console.WriteLine($"│Lv.{player.Level} {player.Job} {player.Name}                                                    ┃");
             Console.WriteLine($"│남은 HP : {player.CurHp}                                             ┃");
             Console.WriteLine($"│                                                          ┃");
             Console.WriteLine($"│0. 초기화면                                               ┃");
@@ -562,6 +714,18 @@ namespace TeamProject
             MaxHp = maxHp;
             CurrentHp = currentHp;
             ATK = atk;
+        }
+    }
+
+    public class Identification
+    {
+        public string ID { get; set; }
+        public string Password { get; set; }
+
+        public Identification(string id, string password)
+        {
+            ID = id;
+            Password = password;
         }
     }
 }
