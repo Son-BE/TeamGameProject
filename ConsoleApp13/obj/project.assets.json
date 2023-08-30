@@ -8,19 +8,19 @@
     "net6.0": []
   },
   "packageFolders": {
-    "C:\\Users\\손병의\\.nuget\\packages\\": {}
+    "C:\\Users\\hiimh\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\손병의\\Desktop\\문법종합반\\ConsoleApp13\\ConsoleApp13\\TeamProject2.csproj",
+      "projectUniqueName": "C:\\Users\\hiimh\\Source\\Repos\\TeamGameProject\\ConsoleApp13\\TeamProject2.csproj",
       "projectName": "TeamProject2",
-      "projectPath": "C:\\Users\\손병의\\Desktop\\문법종합반\\ConsoleApp13\\ConsoleApp13\\TeamProject2.csproj",
-      "packagesPath": "C:\\Users\\손병의\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\손병의\\Desktop\\문법종합반\\ConsoleApp13\\ConsoleApp13\\obj\\",
+      "projectPath": "C:\\Users\\hiimh\\Source\\Repos\\TeamGameProject\\ConsoleApp13\\TeamProject2.csproj",
+      "packagesPath": "C:\\Users\\hiimh\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\hiimh\\Source\\Repos\\TeamGameProject\\ConsoleApp13\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\손병의\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\hiimh\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -61,7 +61,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
       }
     }
   }

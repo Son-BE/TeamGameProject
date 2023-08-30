@@ -13,3 +13,17 @@ C:\Users\손병의\Desktop\문법종합반\ConsoleApp13\ConsoleApp13\obj\Debug\n
 C:\Users\손병의\Desktop\문법종합반\ConsoleApp13\ConsoleApp13\obj\Debug\net6.0\TeamProject2.pdb
 C:\Users\손병의\Desktop\문법종합반\ConsoleApp13\ConsoleApp13\obj\Debug\net6.0\TeamProject2.genruntimeconfig.cache
 C:\Users\손병의\Desktop\문법종합반\ConsoleApp13\ConsoleApp13\obj\Debug\net6.0\ref\TeamProject2.dll
+C:\Users\hiimh\source\repos\TeamGameProject\ConsoleApp13\bin\Debug\net6.0\TeamProject2.exe
+C:\Users\hiimh\source\repos\TeamGameProject\ConsoleApp13\bin\Debug\net6.0\TeamProject2.deps.json
+C:\Users\hiimh\source\repos\TeamGameProject\ConsoleApp13\bin\Debug\net6.0\TeamProject2.runtimeconfig.json
+C:\Users\hiimh\source\repos\TeamGameProject\ConsoleApp13\bin\Debug\net6.0\TeamProject2.dll
+C:\Users\hiimh\source\repos\TeamGameProject\ConsoleApp13\bin\Debug\net6.0\TeamProject2.pdb
+C:\Users\hiimh\source\repos\TeamGameProject\ConsoleApp13\obj\Debug\net6.0\TeamProject2.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\hiimh\source\repos\TeamGameProject\ConsoleApp13\obj\Debug\net6.0\TeamProject2.AssemblyInfoInputs.cache
+C:\Users\hiimh\source\repos\TeamGameProject\ConsoleApp13\obj\Debug\net6.0\TeamProject2.AssemblyInfo.cs
+C:\Users\hiimh\source\repos\TeamGameProject\ConsoleApp13\obj\Debug\net6.0\TeamProject2.csproj.CoreCompileInputs.cache
+C:\Users\hiimh\source\repos\TeamGameProject\ConsoleApp13\obj\Debug\net6.0\TeamProject2.dll
+C:\Users\hiimh\source\repos\TeamGameProject\ConsoleApp13\obj\Debug\net6.0\refint\TeamProject2.dll
+C:\Users\hiimh\source\repos\TeamGameProject\ConsoleApp13\obj\Debug\net6.0\TeamProject2.pdb
+C:\Users\hiimh\source\repos\TeamGameProject\ConsoleApp13\obj\Debug\net6.0\TeamProject2.genruntimeconfig.cache
+C:\Users\hiimh\source\repos\TeamGameProject\ConsoleApp13\obj\Debug\net6.0\ref\TeamProject2.dll
