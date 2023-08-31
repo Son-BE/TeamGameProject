@@ -38,7 +38,7 @@ namespace TeamProject
             login = new Identification("", "");
 
             // 캐릭터 정보 세팅
-            player = new Character("Son", "전사", 1, 10, 10, 100, 100, 1500);
+            player = new Character("Son", "전사", 1, 10, 10, 100, 100, 1500, false);
 
             // 인벤토리 생성
             inventory = new Item[10];
@@ -601,6 +601,17 @@ namespace TeamProject
 
                     // 미니언 HP 반영
                     int minionDamage = new Random().Next(minDamage, maxDamage + 1);
+                    int percent = new Random().Next(0, 100);
+                    if(percent <= 15)
+                    {
+                        minionDamage = (int)Math.Ceiling(minionDamage * 1.6);
+                        player.Eqbool = true;
+
+                    }
+                    else
+                    {
+                        player.Eqbool = false;
+                    }
                     spawnMopArr[itarget].CurrentHp -= minionDamage;
 
                     if (spawnMopArr[itarget].CurrentHp <= 0)
@@ -612,8 +623,9 @@ namespace TeamProject
                     Console.Clear();
                     Console.WriteLine("Battle!!\n");
                     Console.WriteLine();
+                    string CompleteE = player.Eqbool ? "치명타 공격" : "";
                     Console.WriteLine($"{player.Name} 의 공격!");
-                    Console.WriteLine($"Lv.{spawnMopArr[itarget].Level} {spawnMopArr[itarget].Name} 에게 공격을 가했습니다. [데미지 : {minionDamage}]");
+                    Console.WriteLine($"Lv.{spawnMopArr[itarget].Level} {spawnMopArr[itarget].Name} 에게 공격을 가했습니다. [데미지 : {minionDamage}] {CompleteE}");
                     Console.WriteLine();
                     Console.WriteLine();
                     Console.WriteLine($"Lv.{spawnMopArr[itarget].Level} {spawnMopArr[itarget].Name}");
@@ -843,9 +855,10 @@ namespace TeamProject
         public int MaxHp { get; set; }
         public int CurHp { get; set; }
         public int Gold { get; set; }
+        public bool Eqbool { get; set; }
 
 
-        public Character(string name, string job, int level, int atk, int def, int maxhp, int curHp, int gold)
+        public Character(string name, string job, int level, int atk, int def, int maxhp, int curHp, int gold, bool eqbool)
         {
             Name = name;
             Job = job;
@@ -855,6 +868,7 @@ namespace TeamProject
             MaxHp = maxhp;
             CurHp = curHp;
             Gold = gold;
+            Eqbool = eqbool;
         }
     }
     public class Item
