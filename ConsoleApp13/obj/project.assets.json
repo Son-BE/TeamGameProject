@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\hiimh\\Source\\Repos\\TeamGameProject\\ConsoleApp13\\TeamProject2.csproj",
+      "projectUniqueName": "C:\\Users\\hiimh\\source\\repos\\TeamGameProject\\ConsoleApp13\\TeamProject2.csproj",
       "projectName": "TeamProject2",
-      "projectPath": "C:\\Users\\hiimh\\Source\\Repos\\TeamGameProject\\ConsoleApp13\\TeamProject2.csproj",
+      "projectPath": "C:\\Users\\hiimh\\source\\repos\\TeamGameProject\\ConsoleApp13\\TeamProject2.csproj",
       "packagesPath": "C:\\Users\\hiimh\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\hiimh\\Source\\Repos\\TeamGameProject\\ConsoleApp13\\obj\\",
+      "outputPath": "C:\\Users\\hiimh\\source\\repos\\TeamGameProject\\ConsoleApp13\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\hiimh\\AppData\\Roaming\\NuGet\\NuGet.Config",
