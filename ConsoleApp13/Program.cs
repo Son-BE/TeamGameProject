@@ -47,7 +47,7 @@ namespace TeamProject
             AddItem(new Item("판금갑옷", "단단한 갑옷입니다.", 0, 10));
             AddItem(new Item("비철단도", "사거리가 짧은 단도입니다", 10, 0));
 
-            potionlist = new List<Potion> {new Potion("HP포션", "사용 시 Hp를 30 회복시켜줍니다.", 30)};
+            potionlist = new List<Potion> { new Potion("HP포션", "사용 시 Hp를 30 회복시켜줍니다.", 30) };
             potionlist[0].Count = 3;
 
             // 미니언 추가
@@ -118,9 +118,11 @@ namespace TeamProject
             int input = CheckValidInput(1, 2);
             switch (input)
             {
-                case 1: CreateID();
+                case 1:
+                    CreateID();
                     break;
-                case 2: DisplayLogin();
+                case 2:
+                    DisplayLogin();
                     break;
             }
         }
@@ -130,10 +132,10 @@ namespace TeamProject
         {
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.DarkYellow;
-            Console.WriteLine("┌────────────────────────────┐\n"+
-                              "│원하시는 ID를 입력해주세요. │\n"+
+            Console.WriteLine("┌────────────────────────────┐\n" +
+                              "│원하시는 ID를 입력해주세요. │\n" +
                               "└────────────────────────────┘");
-            Console.ResetColor ();
+            Console.ResetColor();
             string newUsername = Console.ReadLine();
             Console.ForegroundColor = ConsoleColor.DarkYellow;
             Console.WriteLine("┌────────────────────────────┐\n" +
@@ -198,14 +200,14 @@ namespace TeamProject
                               "└────────────────────────────┘");
             Console.ResetColor();
             Console.WriteLine("1. 격투가 2. 전사 3. 궁수 4. 마법사");
-            string SelectInput   = Console.ReadLine();
+            string SelectInput = Console.ReadLine();
             int num;
             bool isInt = int.TryParse(SelectInput, out num);
 
-            if(isInt)
+            if (isInt)
             {
-                if(num >=1 &&  num <= 4)
-                    if(num ==1)
+                if (num >= 1 && num <= 4)
+                    if (num == 1)
                     {
                         Console.WriteLine("격투가를 선택하셨습니다.");
                         player.Job = "격투가";
@@ -217,7 +219,7 @@ namespace TeamProject
                         Console.ReadKey();
                         DisplayGameIntro();
                     }
-                    else if(num ==2)
+                    else if (num == 2)
                     {
                         Console.WriteLine("전사를 선택하셨습니다.");
                         player.Job = " 전사 ";
@@ -329,8 +331,8 @@ namespace TeamProject
             Console.WriteLine($"│ LV    : {player.Level}                                                │");
             Console.WriteLine($"│ Name  : {player.Name}                                              │");
             Console.WriteLine($"│ job   : {player.Job}                                           │");
-            Console.WriteLine($"│ Atk   : {player.Atk} {CheckEquipStats("Atk")}".PadRight(60)+"│");
-            Console.WriteLine($"│ Def   : {player.Def} {CheckEquipStats("Def")}".PadRight(60)+"│");
+            Console.WriteLine($"│ Atk   : {player.Atk} {CheckEquipStats("Atk")}".PadRight(60) + "│");
+            Console.WriteLine($"│ Def   : {player.Def} {CheckEquipStats("Def")}".PadRight(60) + "│");
             Console.WriteLine($"│ HP    : {player.CurHp}                                              │");
             Console.WriteLine($"│ Gold  : {player.Gold}                                             │");
             Console.ResetColor();
@@ -367,9 +369,9 @@ namespace TeamProject
             Console.BackgroundColor = ConsoleColor.Yellow;
             Console.ForegroundColor = ConsoleColor.Black;
             Console.WriteLine($"│ [ 아이템 목록 ]             {"│",30}");
-            
+
             ShowList(inventory);
-            
+
             Console.ResetColor();
             Console.WriteLine($"│{"│",59}");
             Console.WriteLine($"│{"│",59}");
@@ -377,7 +379,7 @@ namespace TeamProject
             Console.WriteLine($"│ 원하시는 행동을 입력해주세요.  {" │",27}");
             Console.WriteLine($"│{"│",59}");
             Console.WriteLine($"│{"│",59}");
-            Console.WriteLine($"│{"│",59}"+ "\n│ ");
+            Console.WriteLine($"│{"│",59}" + "\n│ ");
             Console.ForegroundColor = ConsoleColor.Magenta;
             Console.WriteLine($"아이템 번호 입력 시 해당 아이템 장착 / 해제              ");
             Console.ResetColor();
@@ -387,6 +389,8 @@ namespace TeamProject
             Console.WriteLine($"│{"│",59}");
             Console.WriteLine($"│{"│",59}");
             Console.WriteLine("└──────────────────────────────────────────────────────────┘");
+
+            CheckEquipment();
 
             static void CheckEquipment()
             {
@@ -467,7 +471,7 @@ namespace TeamProject
         static string CheckEquipStats(string Atk)
         {
             int iStat = 0;
-            switch(Atk)
+            switch (Atk)
             {
                 case "Atk":
                     foreach (Item item in inventory)
@@ -492,7 +496,7 @@ namespace TeamProject
         static void SpawnMonsters()
         {
             Random random = new Random();
-            int icount = random.Next(1,5);
+            int icount = random.Next(1, 5);
             spawnMopArr = new Monster[icount];
 
             for (int index = 0; icount > 0; index++)
@@ -631,7 +635,7 @@ namespace TeamProject
 
 
         static void EnemyPhase()
-        { 
+        {
             foreach (Monster monster in spawnMopArr)
             {
                 // 미니언이 가하는 데미지
@@ -693,7 +697,7 @@ namespace TeamProject
             string goldChange = player.Gold > 0 ? $"+{victoryReward}" : victoryReward.ToString();
 
             // 포션보상
-            int potionReward = rand.Next(0,spawnMopArr.Length);
+            int potionReward = rand.Next(0, spawnMopArr.Length);
             potionlist[0].Count += potionReward;
 
             Console.Clear();
@@ -707,7 +711,7 @@ namespace TeamProject
             Console.WriteLine($"│미니언과의 전투에서 승리하셨습니다.                       │");
             Console.WriteLine($"│                                                          │");
             Console.WriteLine($"│Lv.{player.Level} {player.Job} {player.Name}                                                 │");
-            Console.WriteLine($"│남은 HP : {player.CurHp}                                              │");           
+            Console.WriteLine($"│남은 HP : {player.CurHp}                                              │");
             Console.WriteLine($"│보유 골드 : {player.Gold}({goldChange})G                                  │");
             Console.WriteLine($"│보유 포션 : {potionlist[0].Count - potionReward} (+{potionReward}) 개                                        │");
             Console.WriteLine($"│                                                          │");
@@ -796,7 +800,7 @@ namespace TeamProject
 
         static void UsePotion(Potion potion)
         {
-            
+
             if (potion.Count <= 0)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
@@ -869,7 +873,7 @@ namespace TeamProject
     }
     public class Item
     {
-        public string Name { get;}
+        public string Name { get; }
         public string Information { get; set; }
         public int Atk { get; set; }
         public int Def { get; set; }
@@ -886,8 +890,8 @@ namespace TeamProject
     }
     public class Potion
     {
-        public string Name { get;}
-        public string Information { get;}
+        public string Name { get; }
+        public string Information { get; }
         public int Hp { get; }
         public int Count { get; set; }
 
