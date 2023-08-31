@@ -220,7 +220,7 @@ namespace TeamProject
                     else if(num ==2)
                     {
                         Console.WriteLine("전사를 선택하셨습니다.");
-                        player.Job = "전사";
+                        player.Job = " 전사 ";
                         player.Atk = 15;
                         player.Def = 15;
                         player.CurHp = 100;
@@ -232,7 +232,7 @@ namespace TeamProject
                     else if (num == 3)
                     {
                         Console.WriteLine("궁수를 선택하셨습니다.");
-                        player.Job = "궁수";
+                        player.Job = " 궁수 ";
                         player.Atk = 20;
                         player.Def = 10;
                         player.CurHp = 80;
@@ -328,9 +328,9 @@ namespace TeamProject
             Console.ForegroundColor = ConsoleColor.Black;
             Console.WriteLine($"│ LV    : {player.Level}                                                │");
             Console.WriteLine($"│ Name  : {player.Name}                                              │");
-            Console.WriteLine($"│ job   : {player.Job}                                               │");
-            Console.WriteLine($"│ Atk   : {player.Atk}                                               │");
-            Console.WriteLine($"│ Def   : {player.Def}                                               │");
+            Console.WriteLine($"│ job   : {player.Job}                                           │");
+            Console.WriteLine($"│ Atk   : {player.Atk} {CheckEquipStats("Atk")}".PadRight(60)+"│");
+            Console.WriteLine($"│ Def   : {player.Def} {CheckEquipStats("Def")}".PadRight(60)+"│");
             Console.WriteLine($"│ HP    : {player.CurHp}                                              │");
             Console.WriteLine($"│ Gold  : {player.Gold}                                             │");
             Console.ResetColor();
@@ -462,6 +462,31 @@ namespace TeamProject
             if (item.Atk != 0) stats += $"공격력 + {item.Atk.ToString()} ";
             if (item.Def != 0) stats += $"방어력 + {item.Def.ToString()} ";
             return stats;
+        }
+
+        static string CheckEquipStats(string Atk)
+        {
+            int iStat = 0;
+            switch(Atk)
+            {
+                case "Atk":
+                    foreach (Item item in inventory)
+                    {
+                        if (item is null) break;
+                        if (item.IsEquip == true) iStat += item.Atk;
+                    }
+                    break;
+                case "Def":
+                    foreach (Item item in inventory)
+                    {
+                        if (item is null) break;
+                        if (item.IsEquip == true) iStat += item.Def;
+                    }
+                    break;
+            }
+
+            if (iStat != 0) return $" +({iStat.ToString()})";
+            else return "";
         }
 
         static void SpawnMonsters()
