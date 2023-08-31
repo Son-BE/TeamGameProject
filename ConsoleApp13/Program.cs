@@ -683,6 +683,9 @@ namespace TeamProject
 
         static void WinBattle()
         {
+            // 레벨업 구현
+            player.LevelUp();
+
             Random rand = new Random();
             // 골드보상
             int victoryReward = rand.Next(100, 500);
@@ -844,6 +847,13 @@ namespace TeamProject
         public int CurHp { get; set; }
         public int Gold { get; set; }
 
+        public void LevelUp()
+        {
+            Level += 1;
+            Atk += 5;
+            MaxHp += 10;
+            CurHp += 10;
+        }
 
         public Character(string name, string job, int level, int atk, int def, int maxhp, int curHp, int gold)
         {
