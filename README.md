@@ -17,6 +17,9 @@
 
 ㆍ팀원 이성권 - 필수기능 참여
 
+### 📗팀 노션 링크
+<https://www.notion.so/02-A2-6a6dc3241b7c4f9d844bf9d2d9cc6fa0>
+
 ### ⚙️개발 환경
 - 'C#'
 - 'Visual studio 2022'
